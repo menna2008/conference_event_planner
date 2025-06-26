@@ -232,7 +232,7 @@ const ConferenceEvent = () => {
                   
               <div className="meal_selection">
                 {mealsItems.map((item, index) => (
-                  <div className='meal_item venue_main' key={index} style={{ padding: 15 }}>
+                  <div className='meal_item' key={index} style={{ padding: 15 }}>
                     <label htmlFor={`meal_${index}`}>{item.name}</label>
                     <input type='checkbox' id={`meal_${index}`} checked={item.selected} onChange={() => handleMealSelection(index)}/>
                   </div>
