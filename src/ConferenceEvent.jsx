@@ -71,7 +71,7 @@ const ConferenceEvent = () => {
   const ItemsDisplay = ({ items }) => {
     return (
       <div className='display_box1'>
-      <table>
+      <table className="table_item_data">
         <thead>
           <tr>
             <th>Name</th>
@@ -105,7 +105,7 @@ const ConferenceEvent = () => {
       totalCost = mealsItems.forEach((item) => {
         if (item.selected) {
           totalCost += item.cost * numberOfPeople
-        }
+        } return totalCost
       })
     }
     return totalCost;
