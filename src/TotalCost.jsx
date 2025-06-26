@@ -12,12 +12,11 @@ const TotalCost = ({ totalCosts, ItemsDisplay }) => {
         </div>
         <div>
           <h2 id="pre_fee_cost_display" className="price">
-           
+            <p>${totalCosts}</p>
           </h2>
-         
-            <div>
-             
-            </div>
+          <div className="render_items">
+            <ItemsDisplay />   
+          </div>
         </div>
       </div>
     </div>

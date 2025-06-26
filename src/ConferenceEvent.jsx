@@ -48,12 +48,53 @@ const ConferenceEvent = () => {
 
   const getItemsFromTotalCost = () => {
     const items = [];
+    venueItems.forEach((item) => {
+      if (item.quantity > 0) {
+        items.push({...item, type : 'venue'})
+      }
+    })
+    avItems.forEach((item) => {
+      if (item.quantity > 0) {
+        items.push({...item, type : 'av'})
+      }
+    })
+    mealsItems.forEach((item) => {
+      if (item.selected) {
+        items.push({...item, type : 'meals', numberOfPeople : numberOfPeople})
+      }
+    })
+    return items
   };
 
   const items = getItemsFromTotalCost();
 
   const ItemsDisplay = ({ items }) => {
-
+    if (items.length === 0) {
+      return <p>No items selected</p>
+    } else {
+      return (
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Unit Cost</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          {items.map((item, index) => (
+            <tr key={index}>
+              <td>{item.name}</td>
+              <td>${item.cost}</td>
+              <td>{item.type === "meals" ? `For ${numberOfPeople} people` : item.quantity}</td>
+              <td>${item.type === "meals" ? item.cost * numberOfPeople : item.cost * item.quantity}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      )
+    }
   };
   const calculateTotalCost = (section) => {
     let totalCost = 0;
@@ -73,6 +114,7 @@ const ConferenceEvent = () => {
   const venueTotalCost = calculateTotalCost("venue");
   const avTotalCost = calculateTotalCost("add-ons");
   const mealsTotalCost = calculateTotalCost("meals");
+  const totalCosts = venueTotalCost + avTotalCost + mealsTotalCost
 
   const navigateToProducts = (idType) => {
     if (idType == '#venue' || idType == '#addons' || idType == '#meals') {
