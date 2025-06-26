@@ -102,7 +102,7 @@ const ConferenceEvent = () => {
     } else if (section === "add-ons") {
       totalCost = avItems.reduce((total, item) => total + item.quantity * item.cost, 0)
     } else if (section === "meals") {
-      totalCost = mealsItems.forEach((item) => {
+      mealsItems.forEach((item) => {
         if (item.selected) {
           totalCost += item.cost * numberOfPeople
         } return totalCost
@@ -224,8 +224,10 @@ const ConferenceEvent = () => {
               </div>
 
               <div className="input-container venue_selection">
-                <label htmlFor><h3>Number of People:</h3></label>
-                <input type='number' className="input_box5" id="numberOfPeople" value={numberOfPeople} onChange={(e) => setNumberOfPeople(parseInt(e.target.value))} min='1'></input>
+                <label htmlFor='numberOfPeople'><h3>Number of People:</h3></label>
+                <input type='number' className="input_box5" id="numberOfPeople" value={numberOfPeople} 
+                onChange={(e) => {const value = e.target.value; 
+                if (value > 0) {setNumberOfPeople(parseInt(e.target.value))}}} min='1'></input>
               </div>
                   
               <div className="meal_selection">
