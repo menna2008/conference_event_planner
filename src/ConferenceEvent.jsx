@@ -69,10 +69,8 @@ const ConferenceEvent = () => {
   const items = getItemsFromTotalCost();
 
   const ItemsDisplay = ({ items }) => {
-    if (items.length === 0) {
-      return <p>No items selected</p>
-    } else {
-      return (
+    return (
+      <div className='display_box1'>
       <table>
         <thead>
           <tr>
@@ -93,9 +91,10 @@ const ConferenceEvent = () => {
           ))}
         </tbody>
       </table>
+      </div>
       )
     }
-  };
+  
   const calculateTotalCost = (section) => {
     let totalCost = 0;
     if (section === "venue") {
