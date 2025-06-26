@@ -50,7 +50,7 @@ export const venueSlice = createSlice({
     decrementQuantity: (state, action) => {
       const item = state[action.payload]
       if (item && item.quantity > 0) {
-        item.quantity--,
+        item.quantity--;
       }
     },
   },
